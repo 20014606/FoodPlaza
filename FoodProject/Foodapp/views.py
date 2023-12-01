@@ -11,3 +11,23 @@ cursor = connection.cursor()
 
 def foodapp(request):
     return render(request,'index.html')
+
+
+def addfood(request):
+    if request.method == "POST":
+        form = FoodForm(request.POST,request.FILES)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect("/allfood")
+            except:
+                return render(request,"error.html")
+        else:
+            form = FoodForm()
+    return render(request,'addfood.html',{'form': form})
+
+
+def showfood(request):
+    foods = Food.objects.all()
+    return render(request, 'foodlist.html', {'foodlist': foods})
+
