@@ -23,11 +23,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 
-    path('',views.foodapp),
-    path('home',views.foodapp),
-    path('addfoods',views.addfood),
-    #path('deletefood/<int:FoodId>',views.deletefood),
-    #path('getfood/<int:FoodId>',views.getfood),
-    #path('editfood/<int:FoodId>',views.updatefood),
-    path('allfood',views.showfood),
+    path('', views.foodapp),
+    path('home', views.foodapp),
+    path('addfoods', views.addfood),
+    path('deletefood/<int:FoodId>', views.deletefood),
+    path('getfood/<int:FoodId>', views.getfood),
+    path('editfood/<int:FoodId>', views.updatefood),
+    path('allfood', views.showfood),
 ]
