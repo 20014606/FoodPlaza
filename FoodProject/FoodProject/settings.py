@@ -55,7 +55,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'FoodProject.urls'
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 

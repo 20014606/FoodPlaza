@@ -34,3 +34,6 @@ urlpatterns = [
     path('dologin',views.doLogin),
     path('logout',views.doLogout),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
