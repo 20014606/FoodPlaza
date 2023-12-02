@@ -30,4 +30,7 @@ urlpatterns = [
     path('getfood/<int:FoodId>', views.getfood),
     path('editfood/<int:FoodId>', views.updatefood),
     path('allfood', views.showfood),
+    path('login',views.login),
+    path('dologin',views.doLogin),
+    path('logout',views.doLogout),
 ]

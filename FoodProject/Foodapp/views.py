@@ -50,3 +50,37 @@ def updatefood(request, FoodId):
         form.save()
         return redirect("/allfood")
     return render(request, 'updatefood.html', {'f': foods})
+
+
+def login(request):
+    return render(request, 'login.html')
+
+
+def doLogin(request):
+    if request.method == "POST":
+        uid = request.POST.get('userId', '')
+        upass = request.POST.get('userpass', '')
+        utype = request.POST.get('type', '')
+
+        if utype == "Admin":
+            for a in Admin.objects.raw('Select * from FP_Admin where AdminId="%s" and AdminPass="%s"' % (uid, upass)):
+                if a.AdminId == uid:
+                    request.session['AdminId'] = uid
+                    return render(request, "index.html", {'success': 'Welcome ' + a.AdminId})
+            else:
+                return render(request, "login.html", {'failure': 'Incorrect login details'})
+
+        if utype == "User":
+            for a in Cust.objects.raw('Select * from FP_Cust where CustEmail="%s" and CustPass="%s"' % (uid, upass)):
+                if a.CustEmail == uid:
+                    request.session['CustId'] = uid
+                    return render(request, "index.html", {'success': 'Welcome ' + a.CustEmail})
+            else:
+                return render(request, "login.html", {'failure': 'Incorrect login details'})
+
+
+def doLogout(request):
+    key_session = list(request.session.keys())
+    for key in key_session:
+        del request.session[key]
+    return render(request, 'index.html', {'success': 'Logged out successfully'})
