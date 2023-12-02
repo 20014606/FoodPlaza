@@ -84,3 +84,47 @@ def doLogout(request):
     for key in key_session:
         del request.session[key]
     return render(request, 'index.html', {'success': 'Logged out successfully'})
+
+
+def addcust(request):
+    if request.method == "POST":
+        form = CustForm(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect("/login")
+            except:
+                return render(request, "error.html")
+    else:
+        form = CustForm()
+    return render(request, 'addcust.html', {'form': form})
+
+
+def showcust(request):
+    custs = Cust.objects.all()
+    return render(request, 'custlist.html', {'custlist': custs})
+
+
+def deletecust(request, CustId):
+    custs = Cust.objects.get(CustId=CustId)
+    custs.delete()
+    return redirect("/allcustomer")
+
+
+def getcust(request):
+    print(request.session['CustId'])
+    for c in Cust.objects.raw('Select * from FP_Cust where CustEmail="%s"' % request.session['CustId']):
+        custs = c
+    return render(request, 'updatecust.html', {'c': custs})
+
+
+def updatecust(request,CustId):
+    custs = Cust.objects.get(CustId=CustId)
+    form = CustForm(request.POST,instance=custs)
+    if form.is_valid():
+        form.save()
+        session_keys = list(request.session.keys())
+        for key in session_keys:
+            del request.session[key]
+            return redirect("/login")
+    return render(request,'updatecust.html',{'c':custs})

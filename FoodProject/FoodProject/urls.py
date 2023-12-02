@@ -21,8 +21,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-
     path('', views.foodapp),
     path('home', views.foodapp),
     path('addfoods', views.addfood),
@@ -30,10 +28,15 @@ urlpatterns = [
     path('getfood/<int:FoodId>', views.getfood),
     path('editfood/<int:FoodId>', views.updatefood),
     path('allfood', views.showfood),
-    path('login',views.login),
-    path('dologin',views.doLogin),
-    path('logout',views.doLogout),
+    path('login', views.login),
+    path('dologin', views.doLogin),
+    path('logout', views.doLogout),
+    path('addcustomer', views.addcust),
+    path('deletecustomer/<int:CustId>', views.deletecust),
+    path('getcustomer', views.getcust),
+    path('editcustomer/<int:CustId>', views.updatecust),
+    path('allcustomer', views.showcust),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
