@@ -139,9 +139,9 @@ footer {
   overflow: hidden;
 }
 .fo-cont-1{
-  width:30%;
+  width:100%;
   float: left;
-  text-align: left;
+  text-align: center;
   font-size: 30px;
   font-weight: normal;
   color: ;
@@ -149,7 +149,7 @@ footer {
   overflow: hidden;
 }
 .fo-cont-2{
-  width:38%;
+  width:100%;
   float: left;
   font-size: 12px;
   text-align: center;

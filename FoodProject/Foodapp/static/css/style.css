@@ -743,6 +743,7 @@
 
   footer {
     border-top: 1px solid rgba(0,0,0,0.05);
+    background-image: url("/static/images/mainscreen3.jpg") !important;
     padding: 120px 0;
     padding-bottom: 80px;
   }
@@ -757,7 +758,7 @@
 
   footer a,
   footer p {
-    color: #909090;
+    color: #FFFFFF;
   }
 
   footer strong {
