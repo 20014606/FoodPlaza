@@ -128,3 +128,36 @@ def updatecust(request,CustId):
             del request.session[key]
             return redirect("/login")
     return render(request,'updatecust.html',{'c':custs})
+
+
+def addcart(request, FoodId):
+    sql = ' Insert into FP_Cart(CustEmail,FoodId,FoodQuant) values("%s","%d","%d")' % (
+    request.session['CustId'], FoodId, 1)
+    i = cursor.execute(sql)
+    transaction.commit()
+    return redirect('/allfood')
+
+
+def delcart(request, CartId):
+    cart = Cart.objects.get(CartId=CartId)
+    cart.delete()
+    return redirect("/allcart")
+
+
+def showcart(request):
+    cart = Cart.objects.raw(
+        'Select CartId,FoodName,FoodPrice,FoodQuant,FoodImage from FP_Food as f inner join FP_Cart as c on f.FoodId=c.FoodId where c.CustEmail="%s"' %
+        request.session['CustId'])
+    transaction.commit()
+    return render(request, "cartlist.html", {'cartlist': cart})
+
+
+def updateQNT(request, s):
+    print(s)
+    ind = s.index('@')
+    cartId = int(s[:ind])
+    qt = int(s[ind+1:])
+    sql = "update FP_Cart set FoodQuant='%d' where CartId='%d'"%(qt,cartId)
+    i = cursor.execute(sql)
+    transaction.commit()
+    return redirect("/allcart")

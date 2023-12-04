@@ -36,6 +36,10 @@ urlpatterns = [
     path('getcustomer', views.getcust),
     path('editcustomer/<int:CustId>', views.updatecust),
     path('allcustomer', views.showcust),
+    path('addtocart/<int:FoodId>', views.addcart),
+    path('allcart', views.showcart),
+    path('deletecart/<int:CartId>', views.delcart),
+    path('updateqnty/<str:s>', views.updateQNT),
 ]
 
 if settings.DEBUG:
