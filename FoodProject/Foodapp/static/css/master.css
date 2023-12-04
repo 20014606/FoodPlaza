@@ -141,7 +141,7 @@ footer {
 .fo-cont-1{
   width:30%;
   float: left;
-  text-align: center;
+  text-align: left;
   font-size: 30px;
   font-weight: normal;
   color: ;
@@ -204,6 +204,8 @@ footer {
   -----------------------------------------*/
 
   footer {
+    /*background-image: url("/static/images/mainscreen3.jpg") !important;*/
+    background-image: url("/static/images/mainscreen4.jpg") !important;
     border-top: 1px solid rgba(0,0,0,0.05);
     padding: 120px 0;
     padding-bottom: 80px;
@@ -219,7 +221,7 @@ footer {
 
   footer a,
   footer p {
-    color: #909090;
+    color: #FFFFFF;
   }
 
   footer strong {
