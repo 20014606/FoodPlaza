@@ -161,3 +161,35 @@ def updateQNT(request, s):
     i = cursor.execute(sql)
     transaction.commit()
     return redirect("/allcart")
+
+
+def placeorder(request):
+    if request.method == "POST":
+        price = request.POST.getlist('FoodPrice', '')
+        q = request.POST.getlist('FoodQuant', '')
+        total = 0.0
+        print(price)
+        for i in range(len(price)):
+            new_val = price[i].split('€')[1]
+            total = total + float(new_val) * float(q[i])
+        today = datetime.datetime.now()
+        sql = 'insert into FP_Order(CustEmail,OrderDate,TotalBill) values ("%s","%s","%f")' % (
+        request.session['CustId'], today, total)
+        i = cursor.execute(sql)
+        transaction.commit()
+        sql1 = 'select * from FP_Order where CustEmail="%s" and OrderDate="%s"' % (request.session['CustId'], today)
+        sql = 'delete from FP_Cart where CustEmail="%s"' % (request.session['CustId'])
+        i = cursor.execute(sql)
+        transaction.commit()
+        od = Order()
+        for o in Order.objects.raw(sql1):
+            if o.CustEmail == request.session['CustId']:
+                od = str(o.OrderId)
+                return render(request, 'index.html', {'success': 'Order placed sucessfully!!!' + str(o.OrderId)})
+    else:
+        pass
+
+
+def getorder(request):
+    orders = Order.objects.all()
+    return render(request, 'orderlist.html', {'orderlist': orders})

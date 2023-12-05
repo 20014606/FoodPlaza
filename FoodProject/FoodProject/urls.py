@@ -40,6 +40,8 @@ urlpatterns = [
     path('allcart', views.showcart),
     path('deletecart/<int:CartId>', views.delcart),
     path('updateqnty/<str:s>', views.updateQNT),
+    path('placeorder', views.placeorder),
+    path('orders', views.getorder),
 ]
 
 if settings.DEBUG:
