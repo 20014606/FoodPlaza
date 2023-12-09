@@ -46,7 +46,7 @@ body{
 }
 .btn{
   width: 100%;
-  background: none;
+  background: white;
   border: 2px solid #FF5722
   color: white;
   padding: 5px;
