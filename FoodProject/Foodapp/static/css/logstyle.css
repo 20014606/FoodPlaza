@@ -37,8 +37,8 @@ body{
 .textbox input{
   border: none;
   outline: none;
-  background: none;
-  color: white;
+  background: white;
+  color: black;
   font-size: 18px;
   width: 80%;
   float: left;
