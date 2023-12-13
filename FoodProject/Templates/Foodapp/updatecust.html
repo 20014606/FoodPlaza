@@ -131,9 +131,9 @@
 		  {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-					{% if request.session.CustId is not None and request.session.AdminId is None %}
+					<!--{% if request.session.CustId is not None and request.session.AdminId is None %}
 					<a href="tel:+918422081717"  class="section-btn">📞 Call Now</a>
-					{% endif %}
+					{% endif %}-->
 					
 					{% if request.session.CustId is None and request.session.AdminId is None %}
                     <a href="addcustomer" class="section-btn">Register</a>
